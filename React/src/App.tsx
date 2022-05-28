@@ -1,26 +1,54 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserProfile/>
     </div>
   );
+}
+
+function UserProfile(): JSX.Element {
+  return (
+    <div className="UserProfile">
+      <div className="flex-row">
+        <Avatar name="hironytic" iconUrl="avatar.png"/>
+        <Star count={42}/>
+      </div>
+    </div>
+  )
+}
+
+interface IStarProps {
+  count: number;
+}
+
+function Star({ count }: IStarProps): JSX.Element {
+  return (
+    <div className="Star">
+      <div className="flex-row">
+        <div className="StarItem">⭐</div>
+        <div className="StarItem">{count}</div>
+      </div>
+    </div>
+  );
+}
+
+interface IAvatarProps {
+  name: string;
+  iconUrl: string;
+}
+
+function Avatar({ name, iconUrl }: IAvatarProps): JSX.Element {
+  return (
+    <div className="Avatar">
+      <div className="flex-column">
+        <img className="AvatarIcon" src={iconUrl} alt="icon" />
+        <div>@{name}</div>
+      </div>
+    </div>
+  )
 }
 
 export default App;
